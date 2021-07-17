@@ -32,4 +32,4 @@ tail -f /tmp/biglog.txt
 cat /tmp/CommonInverterData[1,2].json
 
 # Todo
-Inlfux/Grafana part
+Influx/Grafana part
