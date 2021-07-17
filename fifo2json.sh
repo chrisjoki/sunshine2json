@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/sh
 
 # JSON_FILE,StatusCode,PAC,UAC,UDC,Temperature,Timestamp,DeviceId,DAY_ENERGY
 gen_json() 
