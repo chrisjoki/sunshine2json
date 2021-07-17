@@ -26,7 +26,7 @@ echo Start converting Fronius Sunshine inverter serial output to JSON http endpo
 
 if [ -z `which setserial` ] || [ -z `which screen` ] || [ -z `which stty` ] || [ -z `which python3` ]; then
  if [ ! -z `which opkg` ]; then
-  opkg update; opkg install screen python3 setserial
+  opkg update; opkg install screen python3 setserial coreutils-stty
  fi
  echo Check dependencies. Exiting.
  exit 1
