@@ -1,0 +1,4 @@
+SSH_SERVER="hostname"
+SSH_PORT="22"
+SSH_USER="user"
+WWW_PORT="5000"
