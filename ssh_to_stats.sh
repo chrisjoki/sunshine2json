@@ -25,7 +25,7 @@
 . ./server_config
 
 while [ true ]; do
- ssh -y -p $SSH_PORT $SSH_SERVER -l $SSH_USER -R $WWW_PORT:127.0.0.1:$WWW_PORT
+ ssh -y -p $SSH_PORT $SSH_SERVER -l $SSH_USER -R $WWW_PORT:127.0.0.1:$WWW_PORT python3 $SUNSHINE2JSONPATH/json2influx.py
  sleep 60
 done
 

@@ -5,7 +5,7 @@ Publish energy data of Fronius Sunhine inverters gathered directly from serial p
 Developed on OpenWRT / Futro S550 with two serial ports connected via nullmodem cables to two Fronius Sunshine Maxi inverters
 
 # Install
-git clone https://github.com/chrisjoki/sunshine2json
+git clone https://github.com/chrisjoki/sunshine2json # Both, on system connected to inverter(s) and Influx/Grafana server
 
 cd sunshine2json
 
