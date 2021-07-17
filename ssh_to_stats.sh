@@ -25,7 +25,15 @@
 . ./server_config
 
 while [ true ]; do
- ssh -y -p $SSH_PORT $SSH_SERVER -l $SSH_USER -R $WWW_PORT:127.0.0.1:$WWW_PORT python3 $SUNSHINE2JSONPATH/json2influx.py
- sleep 60
+ PID=`ssh -y -p $SSH_PORT -l $SSH_USER $SSH_SERVER ps fax | grep "[p]ython3 $SUNSHINE2JSONPATH/json2influx.py" | awk '{print $1;}'`
+ if [ ! -z "$PID" ]; then
+  echo Killing old json2influx.py ...
+  ssh -y -p $SSH_PORT -l $SSH_USER $SSH_SERVER kill $PID
+  sleep 3
+ fi
+ echo Starting json2influx ...
+ ssh -y -p $SSH_PORT -l $SSH_USER -R $WWW_PORT:127.0.0.1:$WWW_PORT $SSH_SERVER python3 $SUNSHINE2JSONPATH/json2influx.py
+ echo Recycling ...
+ sleep 3
 done
 
