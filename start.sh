@@ -24,9 +24,9 @@
 
 echo Start converting Fronius Sunshine inverter serial output to JSON http endpoint ...
 
-if [ -z `which setserial` ] || [ -z `which screen` ] || [ -z `which stty` ] || [ -z `which python3` ]; then
+if [ -z `which setserial` ] || [ -z `which screen` ] || [ -z `which stty` ] || [ -z `which python3` ] || [ -z `which tio` ]; then
  if [ ! -z `which opkg` ]; then
-  opkg update; opkg install screen python3 setserial coreutils-stty
+  opkg update; opkg install screen python3 setserial coreutils-stty tio
  fi
  echo Check dependencies. Exiting.
  exit 1
@@ -37,13 +37,20 @@ if [ ! -x "./setserbaud.sh" ] ||  [ ! -x "./ser2dec.py" ] || [ ! -x "./ssh_to_st
  exit 1
 fi
 
-echo Setup serial ports
-./setserbaud.sh /dev/ttyS0 3200
-./setserbaud.sh /dev/ttyS1 3200
+#echo Setup serial ports
+#not working properly
+#./setserbaud.sh /dev/ttyS0 3200
+#./setserbaud.sh /dev/ttyS1 3200
 
 echo Start serial polling ...
-screen -dmS serial0 ./ser2dec.py /dev/ttyS0 6 /tmp/fifo.ttyS0
-screen -dmS serial1 ./ser2dec.py /dev/ttyS1 6 /tmp/fifo.ttyS1
+mkfifo /tmp/fifo.ttyS0
+mkfifo /tmp/fifo.ttyS1
+screen -dmS tio0 tio -b 3200 -l /tmp/fifo.ttyS0 /dev/ttyS0
+screen -dmS tio1 tio -b 3200 -l /tmp/fifo.ttyS1 /dev/ttyS1
+
+echo Start converting raw data ...
+screen -dmS serial0 ./ser2dec.py /tmp/fifo.ttyS0 6 /tmp/fifo.inverter1
+screen -dmS serial1 ./ser2dec.py /tmp/fifo.ttyS1 6 /tmp/fifo.inverter2
 
 echo Start ssh to stats server ...
 screen -dmS ssh ./ssh_to_stats.sh
@@ -51,8 +58,8 @@ screen -dmS ssh ./ssh_to_stats.sh
 sleep 10
 
 echo Start JSON generation ...
-screen -dmS convert1 ./fifo2json.sh /tmp/fifo.ttyS0 /tmp/CommonInverterData1.json 1 /tmp/biglog.txt
-screen -dmS convert2 ./fifo2json.sh /tmp/fifo.ttyS1 /tmp/CommonInverterData2.json 2 /tmp/biglog.txt
+screen -dmS convert1 ./fifo2json.sh /tmp/fifo.inverter1 /tmp/CommonInverterData1.json 1 /tmp/biglog.txt
+screen -dmS convert2 ./fifo2json.sh /tmp/fifo.inverter2 /tmp/CommonInverterData2.json 2 /tmp/biglog.txt
 
 sleep 10
 
