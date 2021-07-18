@@ -46,7 +46,7 @@ if [ -z `which stty` ]; then
  exit 1
 fi
 
-BAUDBASE=`setserial -a $1 | tr "," "\n" | grep Baud_base: |tr "Baud_base: " " "` 
+BAUDBASE=`setserial -a $1 | tr "," "\n" | grep Baud_base: | sed 's/\s//g' | cut -d ':' -f2` 
 
 echo Base baud rate is $BAUDBASE
 
@@ -74,7 +74,7 @@ echo Setting divisor to $DIVISOR
 
 setserial -a $1 divisor $DIVISOR
 
-if [ ! $? ]; then
+if [ ! "$?" ]; then
  echo Error setting divisor.
  exit 1
 fi

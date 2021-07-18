@@ -49,8 +49,8 @@ screen -dmS tio0 tio -b 3200 -l /tmp/fifo.ttyS0 /dev/ttyS0
 screen -dmS tio1 tio -b 3200 -l /tmp/fifo.ttyS1 /dev/ttyS1
 
 echo Start converting raw data ...
-screen -dmS serial0 ./ser2dec.py /tmp/fifo.ttyS0 6 /tmp/fifo.inverter1
-screen -dmS serial1 ./ser2dec.py /tmp/fifo.ttyS1 6 /tmp/fifo.inverter2
+screen -dmS serial0 ./ser2dec.py --in /tmp/fifo.ttyS0 --cnt 6 --out /tmp/fifo.inverter1
+screen -dmS serial1 ./ser2dec.py --in /tmp/fifo.ttyS1 --cnt 6 --out /tmp/fifo.inverter2
 
 echo Start ssh to stats server ...
 screen -dmS ssh ./ssh_to_stats.sh

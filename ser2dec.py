@@ -32,32 +32,32 @@ def main():
 
     parser = argparse.ArgumentParser(description=__doc__)
 
-    parser.add_argument('ser', type=str, help='The serial port to read from')
+    parser.add_argument('--in', type=str, default='/dev/ttyS0', help='The serial port to read from. Default: /dev/ttyS0')
 
-    parser.add_argument('bytecount', type=int, help='Number of bytes to read at once')
+    parser.add_argument('--cnt', type=int, default=6, help='Number of bytes to read at once, Default: 6')
             
-    parser.add_argument('fifo', type=str, help='The fifo/file to write to')
+    parser.add_argument('--out', type=str, default='/proc/self/fd/2', help='The fifo/file to write to. Default: STDOUT.')
 
     options = parser.parse_args();
 
     try:
-        os.mkfifo(options.fifo)
+        os.mkfifo(options.out)
     except FileExistsError:
         pass
     except:
         raise
 
     try:
-        fh = open(options.ser,'rb')
+        fh = open(options.in,'rb')
         print("Serial Port opened ...")
     except:
         sys.exit("Error: Could not open serial port.")
         
     while True:
         try:
-            b = fh.read(options.bytecount)
+            b = fh.read(options.cnt)
             print("Raw Data:",binascii.hexlify(b).decode("ascii"), "Output: ", end='')
-            ff = open(options.fifo,'a')
+            ff = open(options.out,'a')
             for i in bytearray(b):
                 ff.write(str(i)+" ")
                 print(str(i),"",end='')
