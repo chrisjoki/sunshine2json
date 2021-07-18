@@ -68,7 +68,7 @@ if [ $CALCULATEDBAUD -ne $TARGETBAUD ]; then
  exit 1
 fi
 
-setserial -a $1 spd_cust
+stty -F $1 cs8 cstopb crtscts -parenb -icanon
 
 echo Setting divisor to $DIVISOR
 
@@ -81,9 +81,6 @@ fi
 
 echo Setting baud rate of $1 to $TARGETBAUD
 
-stty -F $1 38400 crtscts
-
-stty -F $1 -icanon
-
 setserial -a $1 spd_cust
 
+stty -F $1 38400
