@@ -15,7 +15,7 @@ vi server_config
 
 
 # Dependencies
-opkg update; okpg install python3 screen setserial pip3 coreutils-stty
+opkg update; okpg install python3 screen setserial pip3 coreutils-stty tio
 
 pip3 install Flask pytz 
 
