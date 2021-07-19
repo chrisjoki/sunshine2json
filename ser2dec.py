@@ -27,28 +27,29 @@ import os
 import io
 import argparse
 import binascii
+import errno
 
 def main():
 
     parser = argparse.ArgumentParser(description=__doc__)
 
-    parser.add_argument('--in', type=str, default='/dev/ttyS0', help='The serial port to read from. Default: /dev/ttyS0')
+    parser.add_argument('--infile', type=str, default='/dev/ttyS0', help='The serial port to read from. Default: /dev/ttyS0')
 
     parser.add_argument('--cnt', type=int, default=6, help='Number of bytes to read at once, Default: 6')
             
-    parser.add_argument('--out', type=str, default='/proc/self/fd/2', help='The fifo/file to write to. Default: STDOUT.')
+    parser.add_argument('--outfile', type=str, default='/proc/self/fd/2', help='The fifo/file to write to. Default: STDOUT.')
 
     options = parser.parse_args();
 
     try:
-        os.mkfifo(options.out)
+        os.mkfifo(options.outfile)
     except FileExistsError:
         pass
     except:
         raise
 
     try:
-        fh = open(options.in,'rb')
+        fh = open(options.infile,'rb')
         print("Serial Port opened ...")
     except:
         sys.exit("Error: Could not open serial port.")
@@ -56,8 +57,16 @@ def main():
     while True:
         try:
             b = fh.read(options.cnt)
+            while b[0] not in (17,18,33,34):
+                print("Skipping raw data byte",binascii.hexlify(b[0]))
+                b[0]=b[1]
+                b[1]=b[2]
+                b[2]=b[3]
+                b[3]=b[4]
+                b[4]=b[5]
+                b[6]=fh.read(1)
             print("Raw Data:",binascii.hexlify(b).decode("ascii"), "Output: ", end='')
-            ff = open(options.out,'a')
+            ff = open(options.outfile,'a')
             for i in bytearray(b):
                 ff.write(str(i)+" ")
                 print(str(i),"",end='')
