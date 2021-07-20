@@ -56,18 +56,15 @@ def main():
         
     while True:
         try:
-            b = fh.read(options.cnt)
+            b = bytearray(fh.read(options.cnt))
             while b[0] not in (17,18,33,34):
-                print("Skipping raw data byte",binascii.hexlify(b[0]))
-                b[0]=b[1]
-                b[1]=b[2]
-                b[2]=b[3]
-                b[3]=b[4]
-                b[4]=b[5]
-                b[6]=fh.read(1)
+                print("Skipping raw data byte",b[0])
+                for i in range(1,len(b)):
+                    b[i-1]=b[i]
+                b[len(b)-1]=(fh.read(1))[0]
             print("Raw Data:",binascii.hexlify(b).decode("ascii"), "Output: ", end='')
             ff = open(options.outfile,'a')
-            for i in bytearray(b):
+            for i in b:
                 ff.write(str(i)+" ")
                 print(str(i),"",end='')
             ff.write("\n")
