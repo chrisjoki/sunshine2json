@@ -590,6 +590,958 @@
       "type": "stat"
     },
     {
+      "cacheTimeout": null,
+      "datasource": "InfluxDB",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "max": 2500,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-green",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 1000
+              },
+              {
+                "color": "semi-dark-yellow",
+                "value": 1500
+              },
+              {
+                "color": "dark-orange",
+                "value": 2000
+              },
+              {
+                "color": "dark-red",
+                "value": 2200
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 0,
+        "y": 8
+      },
+      "id": 2,
+      "links": [],
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.0.5",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "CommonInverterData",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"PAC\") FROM \"CommonInverterData\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "PAC"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "DeviceId",
+              "operator": "=",
+              "value": "1"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "AC power 1",
+      "type": "gauge"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "InfluxDB",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "max": 400,
+          "min": 50,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-green",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 145
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 280
+              },
+              {
+                "color": "dark-red",
+                "value": 350
+              }
+            ]
+          },
+          "unit": "volt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 4,
+        "y": 8
+      },
+      "id": 36,
+      "links": [],
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.0.5",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "CommonInverterData",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"PAC\") FROM \"CommonInverterData\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "UDC"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "DeviceId",
+              "operator": "=",
+              "value": "1"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "DC voltage 1",
+      "type": "gauge"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "InfluxDB",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-green",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 20
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 65
+              },
+              {
+                "color": "dark-red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 8,
+        "y": 8
+      },
+      "id": 39,
+      "links": [],
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.0.5",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "CommonInverterData",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"PAC\") FROM \"CommonInverterData\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "DeviceId",
+              "operator": "=",
+              "value": "1"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Temperature inverter 1",
+      "type": "gauge"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "InfluxDB",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "max": 250,
+          "min": 210,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-green",
+                "value": null
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 220
+              },
+              {
+                "color": "super-light-orange",
+                "value": 235
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 238
+              },
+              {
+                "color": "dark-red",
+                "value": 240
+              }
+            ]
+          },
+          "unit": "volt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 12,
+        "y": 8
+      },
+      "id": 42,
+      "links": [],
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.0.5",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "CommonInverterData",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"PAC\") FROM \"CommonInverterData\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "UAC"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "DeviceId",
+              "operator": "=",
+              "value": "1"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "AC voltage 1",
+      "type": "gauge"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "InfluxDB",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "max": 2500,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-green",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 1000
+              },
+              {
+                "color": "semi-dark-yellow",
+                "value": 1500
+              },
+              {
+                "color": "dark-orange",
+                "value": 2000
+              },
+              {
+                "color": "dark-red",
+                "value": 2200
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 0,
+        "y": 14
+      },
+      "id": 38,
+      "links": [],
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.0.5",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "CommonInverterData",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"PAC\") FROM \"CommonInverterData\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "PAC"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "DeviceId",
+              "operator": "=",
+              "value": "2"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "AC power 2",
+      "type": "gauge"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "InfluxDB",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "max": 400,
+          "min": 50,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-green",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 160
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 280
+              },
+              {
+                "color": "dark-red",
+                "value": 350
+              }
+            ]
+          },
+          "unit": "volt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 4,
+        "y": 14
+      },
+      "id": 37,
+      "links": [],
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.0.5",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "CommonInverterData",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"PAC\") FROM \"CommonInverterData\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "UDC"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "DeviceId",
+              "operator": "=",
+              "value": "2"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "DC voltage 2",
+      "type": "gauge"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "InfluxDB",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-green",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 20
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 65
+              },
+              {
+                "color": "dark-red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 8,
+        "y": 14
+      },
+      "id": 40,
+      "links": [],
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.0.5",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "CommonInverterData",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"PAC\") FROM \"CommonInverterData\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "Temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "DeviceId",
+              "operator": "=",
+              "value": "2"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Temperature inverter 2",
+      "type": "gauge"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "InfluxDB",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "max": 250,
+          "min": 210,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-green",
+                "value": null
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 220
+              },
+              {
+                "color": "super-light-orange",
+                "value": 235
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 238
+              },
+              {
+                "color": "dark-red",
+                "value": 240
+              }
+            ]
+          },
+          "unit": "volt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 12,
+        "y": 14
+      },
+      "id": 43,
+      "links": [],
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "8.0.5",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "CommonInverterData",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"PAC\") FROM \"CommonInverterData\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "UAC"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "DeviceId",
+              "operator": "=",
+              "value": "2"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "AC voltage 2",
+      "type": "gauge"
+    },
+    {
       "datasource": "InfluxDB",
       "fieldConfig": {
         "defaults": {
@@ -643,7 +1595,7 @@
         "h": 6,
         "w": 16,
         "x": 0,
-        "y": 8
+        "y": 20
       },
       "id": 12,
       "options": {
@@ -768,958 +1720,6 @@
       "timeShift": null,
       "title": "Energy today  combined",
       "type": "timeseries"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "InfluxDB",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "max": 2500,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "light-green",
-                "value": null
-              },
-              {
-                "color": "dark-green",
-                "value": 1000
-              },
-              {
-                "color": "semi-dark-yellow",
-                "value": 1500
-              },
-              {
-                "color": "dark-orange",
-                "value": 2000
-              },
-              {
-                "color": "dark-red",
-                "value": 2200
-              }
-            ]
-          },
-          "unit": "watt"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 0,
-        "y": 14
-      },
-      "id": 2,
-      "links": [],
-      "options": {
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "text": {}
-      },
-      "pluginVersion": "8.0.5",
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "CommonInverterData",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"PAC\") FROM \"CommonInverterData\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "PAC"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "DeviceId",
-              "operator": "=",
-              "value": "1"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "AC power 1",
-      "type": "gauge"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "InfluxDB",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "max": 400,
-          "min": 50,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "super-light-green",
-                "value": null
-              },
-              {
-                "color": "dark-green",
-                "value": 145
-              },
-              {
-                "color": "semi-dark-orange",
-                "value": 280
-              },
-              {
-                "color": "dark-red",
-                "value": 350
-              }
-            ]
-          },
-          "unit": "volt"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 4,
-        "y": 14
-      },
-      "id": 36,
-      "links": [],
-      "options": {
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "text": {}
-      },
-      "pluginVersion": "8.0.5",
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "CommonInverterData",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"PAC\") FROM \"CommonInverterData\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "UDC"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "DeviceId",
-              "operator": "=",
-              "value": "1"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "DC voltage 1",
-      "type": "gauge"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "InfluxDB",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "super-light-green",
-                "value": null
-              },
-              {
-                "color": "dark-green",
-                "value": 20
-              },
-              {
-                "color": "semi-dark-orange",
-                "value": 65
-              },
-              {
-                "color": "dark-red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "celsius"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 8,
-        "y": 14
-      },
-      "id": 39,
-      "links": [],
-      "options": {
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "text": {}
-      },
-      "pluginVersion": "8.0.5",
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "CommonInverterData",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"PAC\") FROM \"CommonInverterData\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "Temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "DeviceId",
-              "operator": "=",
-              "value": "1"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Temperature inverter 1",
-      "type": "gauge"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "InfluxDB",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "max": 250,
-          "min": 210,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "super-light-green",
-                "value": null
-              },
-              {
-                "color": "semi-dark-green",
-                "value": 220
-              },
-              {
-                "color": "super-light-orange",
-                "value": 235
-              },
-              {
-                "color": "semi-dark-orange",
-                "value": 238
-              },
-              {
-                "color": "dark-red",
-                "value": 240
-              }
-            ]
-          },
-          "unit": "volt"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 12,
-        "y": 14
-      },
-      "id": 42,
-      "links": [],
-      "options": {
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "text": {}
-      },
-      "pluginVersion": "8.0.5",
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "CommonInverterData",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"PAC\") FROM \"CommonInverterData\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "UAC"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "DeviceId",
-              "operator": "=",
-              "value": "1"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "AC voltage 1",
-      "type": "gauge"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "InfluxDB",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "max": 2500,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "light-green",
-                "value": null
-              },
-              {
-                "color": "dark-green",
-                "value": 1000
-              },
-              {
-                "color": "semi-dark-yellow",
-                "value": 1500
-              },
-              {
-                "color": "dark-orange",
-                "value": 2000
-              },
-              {
-                "color": "dark-red",
-                "value": 2200
-              }
-            ]
-          },
-          "unit": "watt"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 0,
-        "y": 20
-      },
-      "id": 38,
-      "links": [],
-      "options": {
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "text": {}
-      },
-      "pluginVersion": "8.0.5",
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "CommonInverterData",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"PAC\") FROM \"CommonInverterData\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "PAC"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "DeviceId",
-              "operator": "=",
-              "value": "2"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "AC power 2",
-      "type": "gauge"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "InfluxDB",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "max": 400,
-          "min": 50,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "super-light-green",
-                "value": null
-              },
-              {
-                "color": "dark-green",
-                "value": 160
-              },
-              {
-                "color": "semi-dark-orange",
-                "value": 280
-              },
-              {
-                "color": "dark-red",
-                "value": 350
-              }
-            ]
-          },
-          "unit": "volt"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 4,
-        "y": 20
-      },
-      "id": 37,
-      "links": [],
-      "options": {
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "text": {}
-      },
-      "pluginVersion": "8.0.5",
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "CommonInverterData",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"PAC\") FROM \"CommonInverterData\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "UDC"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "DeviceId",
-              "operator": "=",
-              "value": "2"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "DC voltage 2",
-      "type": "gauge"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "InfluxDB",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "max": 100,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "super-light-green",
-                "value": null
-              },
-              {
-                "color": "dark-green",
-                "value": 20
-              },
-              {
-                "color": "semi-dark-orange",
-                "value": 65
-              },
-              {
-                "color": "dark-red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "celsius"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 8,
-        "y": 20
-      },
-      "id": 40,
-      "links": [],
-      "options": {
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "text": {}
-      },
-      "pluginVersion": "8.0.5",
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "CommonInverterData",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"PAC\") FROM \"CommonInverterData\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "Temperature"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "DeviceId",
-              "operator": "=",
-              "value": "2"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Temperature inverter 2",
-      "type": "gauge"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "InfluxDB",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "max": 250,
-          "min": 210,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "super-light-green",
-                "value": null
-              },
-              {
-                "color": "semi-dark-green",
-                "value": 220
-              },
-              {
-                "color": "super-light-orange",
-                "value": 235
-              },
-              {
-                "color": "semi-dark-orange",
-                "value": 238
-              },
-              {
-                "color": "dark-red",
-                "value": 240
-              }
-            ]
-          },
-          "unit": "volt"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 12,
-        "y": 20
-      },
-      "id": 43,
-      "links": [],
-      "options": {
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true,
-        "text": {}
-      },
-      "pluginVersion": "8.0.5",
-      "targets": [
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "CommonInverterData",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"PAC\") FROM \"CommonInverterData\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "UAC"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "DeviceId",
-              "operator": "=",
-              "value": "2"
-            }
-          ]
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "AC voltage 2",
-      "type": "gauge"
     },
     {
       "cacheTimeout": null,
@@ -3204,7 +3204,7 @@
     "list": []
   },
   "time": {
-    "from": "now/d",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
