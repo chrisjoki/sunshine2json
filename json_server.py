@@ -41,7 +41,7 @@ def common_inverter_data_endpoint1() -> str:
         json_response = random.choice(common_inverter_data)
         json_response['Head']['Timestamp'] = now
         return json_response
-    except FileExistsError:
+    except FileNotFoundError:
         abort(404)
     except
         raise                   
@@ -55,7 +55,7 @@ def common_inverter_data_endpoint2() -> str:
         json_response = random.choice(common_inverter_data)
         json_response['Head']['Timestamp'] = now
         return json_response
-    except FileExistsError:
+    except FileNotFoundError:
         abort(404)
     except
         raise                   
