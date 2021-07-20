@@ -24,8 +24,8 @@ class DataCollectionError(Exception):
 
 
 class FroniusToInflux:
-    BACKOFF_INTERVAL = 4
-    IGNORE_SUN_DOWN = False
+    BACKOFF_INTERVAL = 3.5
+    IGNORE_SUN_DOWN = True
 
     def __init__(self, client: InfluxDBClient, location: Location, endpoints: List[str], tz: Any) -> None:
         self.client = client
@@ -62,7 +62,6 @@ class FroniusToInflux:
                     'time': timestamp,
                     'fields': {
                         'PAC': self.get_float_or_zero('PAC'),
-#                        'IDC': self.get_float_or_zero('IDC'),
                         'UAC': self.get_float_or_zero('UAC'),
                         'UDC': self.get_float_or_zero('UDC'),
                         'DAY_ENERGY': self.get_float_or_zero('DAY_ENERGY'),
