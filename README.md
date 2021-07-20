@@ -15,11 +15,11 @@ cp server_config.template server_config
 
 vi server_config
 
-Import *.json to Grafana
-
 Generate dropbear ssh key on OpenWRT device: dropbearkey -t rsa -f ~./ssh/id_dropbear
 
 Put pubkey on Influx machine to enable scripted login
+
+Install Influx and Grafana, connect them and import *.json to Grafana
 
 # Dependencies
 opkg update; okpg install python3 screen setserial pip3 coreutils-stty tio
