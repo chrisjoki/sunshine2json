@@ -1,3 +1,5 @@
+[img grafana.png]
+
 # sunshine2json
 Publish energy data of Fronius Sunhine inverters gathered directly from serial port of inverter to http/json endpoint on remote server for use with Influx/Grafana
 
