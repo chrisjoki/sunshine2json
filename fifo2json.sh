@@ -128,7 +128,8 @@ while true; do
    # Indication of inverter shutdown
    echo "$STATUS_LINE Possible StatusCode 2 ..."
    read DAY_ENERGY < $ENERGY_SUM
-   gen_json $JSON_FILE $StatusCode 0 0 0 "" $Timestamp $DeviceId $DAY_ENERGY
+   DeviceId=$(($v1&15))
+   gen_json $JSON_FILE $StatusCode 0 0 0 0 $Timestamp $DeviceId $DAY_ENERGY
    sleep 30
    rm $JSON_FILE
    echo Shutdown. JSON deleted.
