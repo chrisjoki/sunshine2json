@@ -1,7 +1,7 @@
-![Grafana screenshot](grafana.png)
-
 # sunshine2json
 Publish energy data of Fronius Sunhine inverters gathered directly from serial port of inverter to http/json endpoint on remote server for use with Influx/Grafana
+
+![Grafana screenshot](grafana.png)
 
 # Remarks
 Developed on OpenWRT / Futro S550 with two serial ports connected via nullmodem cables to two Fronius Sunshine Maxi inverters
