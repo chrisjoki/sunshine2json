@@ -52,19 +52,21 @@ echo Start converting raw data ...
 screen -dmS serial0 ./ser2dec.py --infile /tmp/fifo.ttyS0 --cnt 6 --outfile /tmp/fifo.inverter1
 screen -dmS serial1 ./ser2dec.py --infile /tmp/fifo.ttyS1 --cnt 6 --outfile /tmp/fifo.inverter2
 
-echo Start ssh to stats server ...
-screen -dmS ssh ./ssh_to_stats.sh
-
-sleep 10
+sleep 5
 
 echo Start JSON generation ...
 screen -dmS convert1 ./fifo2json.sh /tmp/fifo.inverter1 /tmp/CommonInverterData1.json 1 /tmp/biglog.txt
 screen -dmS convert2 ./fifo2json.sh /tmp/fifo.inverter2 /tmp/CommonInverterData2.json 2 /tmp/biglog.txt
 
-sleep 10
+sleep 5
 
 echo Start http server ...
 # expects /tmp/CommonInverterData[1/2].json
 screen -dmS flask ./flask_start.sh
+
+sleep 5
+
+echo Start ssh to stats server ...
+screen -dmS ssh ./ssh_to_stats.sh
 
 echo Running.

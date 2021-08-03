@@ -32,7 +32,7 @@ while [ true ]; do
   sleep 3
  fi
  echo Starting json2influx ...
- ssh -K 30 -y -p $SSH_PORT -l $SSH_USER -R $WWW_PORT:127.0.0.1:$WWW_PORT $SSH_SERVER python3 $SUNSHINE2JSONPATH/json2influx.py
+ ssh -K 10 -I 60 -y -p $SSH_PORT -l $SSH_USER -R $WWW_PORT:127.0.0.1:$WWW_PORT $SSH_SERVER python3 $SUNSHINE2JSONPATH/json2influx.py
  echo Recycling ...
  sleep 3
 done
