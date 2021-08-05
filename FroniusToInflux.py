@@ -26,6 +26,7 @@ class DataCollectionError(Exception):
 class FroniusToInflux:
     BACKOFF_INTERVAL = 3.5
     IGNORE_SUN_DOWN = True
+    WAITEDFORCONNECTIONCOUNT = 4
 
     def __init__(self, client: InfluxDBClient, location: Location, endpoints: List[str], tz: Any) -> None:
         self.client = client
@@ -117,6 +118,7 @@ class FroniusToInflux:
 
     def run(self) -> None:
         try:
+            waitedforconnection = 0
             while True:
                 try:
                     self.sun_is_shining()
@@ -126,16 +128,22 @@ class FroniusToInflux:
                         self.data = response.json()
                         collected_data.extend(self.translate_response())
                         self.client.write_points(collected_data)
-                        print('Data written')
+                    print('Data written')
                     sleep(self.BACKOFF_INTERVAL)
+                    waitedforconnection = 0
                 except SunIsDown:
                     print("Waiting for sunrise")
                     sleep(60)
                     print('Waited 60 seconds for sunrise')
                 except ConnectionError:
-                    print("Waiting for connection...")
-                    sleep(10)
-                    print('Waited 10 seconds for connection')
+                    waitedforconnection += 1
+                    if waitedforconnection == self.WAITEDFORCONNECTIONCOUNT:
+                        print("No more waiting for connection ... Bye")
+                        break
+                    else:
+                        print("Waiting for connection ...")
+                        sleep(10)
+                        print('Waited 10 seconds for connection')
                 except KeyError:
                     raise WrongFroniusData('Response structure is not healthy')
                 except Exception as e:
